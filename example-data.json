@@ -1,0 +1,144 @@
+{
+  "projectName": "Sample API Documentation",
+  "version": "1.2.0",
+  "description": "Example API documentation to demonstrate MCP-RAG server search capabilities",
+  "baseUrl": "https://api.example.com/v1",
+  "authentication": {
+    "type": "Bearer Token",
+    "header": "Authorization",
+    "description": "Include your API key as a Bearer token in the Authorization header"
+  },
+  "endpoints": [
+    {
+      "path": "/users",
+      "method": "GET",
+      "description": "Retrieve a list of all users",
+      "parameters": {
+        "page": {
+          "type": "integer",
+          "description": "Page number for pagination",
+          "default": 1
+        },
+        "limit": {
+          "type": "integer", 
+          "description": "Number of users per page",
+          "default": 20,
+          "max": 100
+        }
+      },
+      "response": {
+        "200": {
+          "description": "Success",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "users": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {"type": "integer"},
+                    "name": {"type": "string"},
+                    "email": {"type": "string"},
+                    "created_at": {"type": "string", "format": "datetime"}
+                  }
+                }
+              },
+              "pagination": {
+                "type": "object",
+                "properties": {
+                  "page": {"type": "integer"},
+                  "total_pages": {"type": "integer"},
+                  "total_count": {"type": "integer"}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "path": "/users/{id}",
+      "method": "GET",
+      "description": "Retrieve a specific user by ID",
+      "parameters": {
+        "id": {
+          "type": "integer",
+          "description": "Unique user identifier",
+          "required": true,
+          "location": "path"
+        }
+      },
+      "response": {
+        "200": {
+          "description": "User found",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "id": {"type": "integer"},
+              "name": {"type": "string"},
+              "email": {"type": "string"},
+              "profile": {
+                "type": "object",
+                "properties": {
+                  "bio": {"type": "string"},
+                  "location": {"type": "string"},
+                  "website": {"type": "string"}
+                }
+              },
+              "created_at": {"type": "string", "format": "datetime"},
+              "updated_at": {"type": "string", "format": "datetime"}
+            }
+          }
+        },
+        "404": {
+          "description": "User not found",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "error": {"type": "string"},
+              "message": {"type": "string"}
+            }
+          }
+        }
+      }
+    }
+  ],
+  "errorCodes": {
+    "400": "Bad Request - The request was invalid or cannot be served",
+    "401": "Unauthorized - Authentication credentials were missing or incorrect",
+    "403": "Forbidden - The request is understood but access is denied",
+    "404": "Not Found - The requested resource could not be found",
+    "429": "Too Many Requests - Rate limit exceeded",
+    "500": "Internal Server Error - The server encountered an unexpected condition"
+  },
+  "rateLimiting": {
+    "requests_per_minute": 100,
+    "burst_limit": 20,
+    "headers": {
+      "X-RateLimit-Limit": "Maximum number of requests allowed per minute",
+      "X-RateLimit-Remaining": "Number of requests remaining in current window",
+      "X-RateLimit-Reset": "Time when the rate limit window resets (Unix timestamp)"
+    }
+  },
+  "sdks": [
+    {
+      "language": "JavaScript",
+      "name": "example-api-js",
+      "repository": "https://github.com/example/api-js",
+      "installation": "npm install example-api-js"
+    },
+    {
+      "language": "Python",
+      "name": "example-api-python",
+      "repository": "https://github.com/example/api-python", 
+      "installation": "pip install example-api-python"
+    },
+    {
+      "language": "Go",
+      "name": "example-api-go",
+      "repository": "https://github.com/example/api-go",
+      "installation": "go get github.com/example/api-go"
+    }
+  ]
+}
