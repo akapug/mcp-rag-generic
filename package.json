@@ -1,0 +1,36 @@
+{
+  "name": "mcp-rag-generic",
+  "version": "1.0.0",
+  "description": "Generic MCP server for serving any JSON file as a searchable resource in Windsurf/Cursor",
+  "main": "mcp-rag-server.js",
+  "bin": {
+    "mcp-rag": "./mcp-rag-server.js"
+  },
+  "scripts": {
+    "start": "node mcp-rag-server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mcp",
+    "rag",
+    "json",
+    "search",
+    "windsurf",
+    "cursor",
+    "ai",
+    "assistant"
+  ],
+  "author": "Softgen Labs",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/akapug/mcp-rag-generic.git"
+  },
+  "bugs": {
+    "url": "https://github.com/akapug/mcp-rag-generic/issues"
+  },
+  "homepage": "https://github.com/akapug/mcp-rag-generic#readme"
+}
